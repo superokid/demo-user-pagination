@@ -9,7 +9,7 @@ interface Props {}
 const Header: React.FC<Props> = () => {
   const [isMobile] = useMediaQuery('(max-width:767px)');
   return (
-    <Box bg="white" px={5} py={7}>
+    <Box bg="white" px={5} py={7} position="sticky" top="0" zIndex={2}>
       <Flex>
         {isMobile && <MobSideBar />}
         <Image width="150px" objectFit="contain" src={ImgLogo} alt="shipper logo" />

@@ -1,6 +1,12 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import TestRoot from 'utils/TestRoot';
+
 import App from './App';
 
 test('<App />', () => {
-  render(<App />);
+  render(
+    <TestRoot>
+      <App />
+    </TestRoot>
+  );
 });

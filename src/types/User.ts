@@ -13,6 +13,18 @@ export default interface User {
   nat?: string;
 }
 
+export interface UserApi {
+  results: User[];
+  info: Info;
+}
+
+export interface Info {
+  page: number;
+  results: number;
+  seed: string;
+  version: string;
+}
+
 export interface Dob {
   date: string;
   age: number;

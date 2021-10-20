@@ -31,6 +31,5 @@ describe('<DriverCard />', () => {
     expect(getByText(data.phone)).toBeInTheDocument();
     expect(getByText(data.email)).toBeInTheDocument();
     expect(getByText('01-12-1972')).toBeInTheDocument();
-    expect(getByText(data.id.value)).toBeInTheDocument();
   });
 });

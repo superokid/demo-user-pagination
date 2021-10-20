@@ -12,17 +12,24 @@ interface Props {
 
 const Card: React.FC<Props> = ({ data = {} }) => {
   return (
-    <Container bg="white">
+    <Container bg="white" className="driver-card">
       <Flex p={3}>
         <Text color="#afafaf" fontWeight="bold" mr={1}>
           Driver ID
         </Text>
-        <Text color="primary">{data.id?.value || '281939RY'}</Text>
+        <Text color="primary">281939RY</Text>
         <Spacer />
         <img src={ImgMore} alt="more" />
       </Flex>
       <hr />
-      <Stack direction={{ base: 'row', md: 'column' }} p={6}>
+      <Stack
+        direction={{ base: 'row', md: 'column' }}
+        align={{
+          base: 'center',
+          md: 'flex-start',
+        }}
+        p={4}
+      >
         <img src={ImgUser} alt="driver" className="driver-card__avatar" />
         <Stack>
           <Box>
@@ -37,7 +44,7 @@ const Card: React.FC<Props> = ({ data = {} }) => {
           </Box>
           <Box display={{ base: 'none', md: 'block' }}>
             <Title>Email</Title>
-            <Text isTruncated>{data.email}</Text>
+            <Text>{data.email}</Text>
           </Box>
           <Box display={{ base: 'none', md: 'block' }}>
             <Title>Tanggal Lahir</Title>
@@ -52,15 +59,18 @@ const Card: React.FC<Props> = ({ data = {} }) => {
 export default Card;
 
 const Container = styled(Box)`
-  font-size: 0.9em;
+  font-size: 0.8em;
   .driver-card__avatar {
-    width: 100px;
-    height: 100px;
+    margin-right: 2em;
+    width: 50px;
+    height: 50px;
     max-width: 40%;
   }
   @media (max-width: 767px) {
     .driver-card__avatar {
-      margin-right: 2em;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 5px;
     }
   }
 `;

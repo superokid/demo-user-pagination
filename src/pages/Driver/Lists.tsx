@@ -1,34 +1,46 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
+import { Stack, Button, Box } from '@chakra-ui/react';
 
+import User from 'types/User';
 import DriverCard from './Card';
 
-interface Props {}
+interface Props {
+  drivers?: User[];
+}
 
-const data = {
-  name: {
-    first: 'First Name',
-    last: 'Last Name',
-    title: 'Title',
-  },
-  phone: 'Phone Number',
-  email: 'Email Address',
-  dob: {
-    date: '1972-12-01T09:18:35.935Z',
-    age: 49,
-  },
-  id: {
-    name: 'TFN',
-    value: '670790133',
-  },
-};
+const Lists = ({ drivers }: Props) => {
+  const [page, setPage] = useState<number>(1);
+  const LIMIT = 5;
+  const TOTAL = 30;
+  const totalPage = TOTAL / LIMIT;
 
-const Lists = (props: Props) => {
+  const handlePage = (curr: number) => () => {
+    setPage(curr);
+  };
+
   return (
-    <Container>
-      {new Array(5).fill(0).map((item, key) => (
-        <DriverCard data={data} key={key} />
-      ))}
-    </Container>
+    <Stack spacing="2em">
+      <Container>
+        {(drivers || []).slice(page * LIMIT - LIMIT, page * LIMIT).map((item, key) => (
+          <DriverCard data={item} key={key} />
+        ))}
+      </Container>
+      <Stack direction="row" justify="center" spacing="1em">
+        <Button variant="link" onClick={handlePage(page - 1)} color="black" isDisabled={page === 1}>
+          {`< Previous Page`}
+        </Button>
+        <Button
+          variant="link"
+          onClick={handlePage(page + 1)}
+          color="black"
+          isDisabled={page === totalPage}
+        >
+          {`Next Page >`}
+        </Button>
+      </Stack>
+      <Box />
+    </Stack>
   );
 };
 
@@ -36,7 +48,7 @@ export default Lists;
 
 const Container = styled.div`
   display: grid;
-  grid-gap: 1.4rem;
+  grid-gap: 1rem;
   margin: 0 auto;
   width: 100%;
   @media (min-width: 768px) {
@@ -46,7 +58,9 @@ const Container = styled.div`
     grid-template-columns: repeat(3, 1fr);
   }
   @media (min-width: 1200px) {
-    grid-gap: 1.6rem;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media (min-width: 1366px) {
     grid-template-columns: repeat(5, 1fr);
   }
 `;
