@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/demo-user-pagination/static/css/main.18a009de.chunk.css",
+    "main.js": "/demo-user-pagination/static/js/main.ca017fb0.chunk.js",
+    "main.js.map": "/demo-user-pagination/static/js/main.ca017fb0.chunk.js.map",
+    "runtime-main.js": "/demo-user-pagination/static/js/runtime-main.6bb3e0c5.js",
+    "runtime-main.js.map": "/demo-user-pagination/static/js/runtime-main.6bb3e0c5.js.map",
+    "static/js/2.802d9206.chunk.js": "/demo-user-pagination/static/js/2.802d9206.chunk.js",
+    "static/js/2.802d9206.chunk.js.map": "/demo-user-pagination/static/js/2.802d9206.chunk.js.map",
+    "static/js/3.df97aad9.chunk.js": "/demo-user-pagination/static/js/3.df97aad9.chunk.js",
+    "static/js/3.df97aad9.chunk.js.map": "/demo-user-pagination/static/js/3.df97aad9.chunk.js.map",
+    "index.html": "/demo-user-pagination/index.html",
+    "static/css/main.18a009de.chunk.css.map": "/demo-user-pagination/static/css/main.18a009de.chunk.css.map",
+    "static/js/2.802d9206.chunk.js.LICENSE.txt": "/demo-user-pagination/static/js/2.802d9206.chunk.js.LICENSE.txt",
+    "static/media/calendar.3d43383a.svg": "/demo-user-pagination/static/media/calendar.3d43383a.svg",
+    "static/media/home.fb8579db.svg": "/demo-user-pagination/static/media/home.fb8579db.svg",
+    "static/media/menu.4dc89751.svg": "/demo-user-pagination/static/media/menu.4dc89751.svg",
+    "static/media/search.0e13c86a.svg": "/demo-user-pagination/static/media/search.0e13c86a.svg",
+    "static/media/user.d18e2a4e.svg": "/demo-user-pagination/static/media/user.d18e2a4e.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6bb3e0c5.js",
+    "static/js/2.802d9206.chunk.js",
+    "static/css/main.18a009de.chunk.css",
+    "static/js/main.ca017fb0.chunk.js"
+  ]
+}
