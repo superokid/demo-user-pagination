@@ -15,10 +15,6 @@ const Driver = (props: Props) => {
     return <Text>Error</Text>;
   }
 
-  const searchedData = (data || []).filter(
-    (item) => item.name.first.toLowerCase().indexOf(search.toLowerCase()) > -1
-  );
-
   return (
     <VStack w="100%">
       <DriverHeader
@@ -27,7 +23,7 @@ const Driver = (props: Props) => {
         }}
       />
       <Skeleton isLoaded={!isLoading} w="100%" height="20px">
-        <DriverLists drivers={searchedData} />
+        <DriverLists drivers={data} search={search} />
       </Skeleton>
     </VStack>
   );

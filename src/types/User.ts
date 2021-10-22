@@ -1,3 +1,4 @@
+// api v1.3
 export default interface User {
   gender?: string;
   name: Name;
@@ -32,14 +33,15 @@ export interface Dob {
 
 export interface ID {
   name: string;
-  value: string;
+  value: string | null;
 }
 
 export interface Location {
-  street: string;
+  street: { number: number; name: string };
   city: string;
   state: string;
-  postcode: string;
+  country: string;
+  postcode: string | number;
   coordinates: Coordinates;
   timezone: Timezone;
 }

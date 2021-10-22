@@ -1,27 +1,8 @@
 import { render, fireEvent } from '@testing-library/react';
 import Component, { PAGE_LIMIT } from './Lists';
+import data from 'types/drivers.mock';
 
 describe('<Lists />', () => {
-  const data = new Array(30).fill(0).map((_, i) => {
-    return {
-      name: {
-        first: 'First Name',
-        last: 'Last Name',
-        title: 'Title',
-      },
-      phone: 'Phone Number ' + i,
-      email: 'Email Address',
-      dob: {
-        date: '1972-12-01T09:18:35.935Z',
-        age: 49,
-      },
-      id: {
-        name: 'TFN',
-        value: '670790133',
-      },
-    };
-  });
-
   test('render empty', () => {
     const { getByTestId, getByText } = render(<Component />);
     expect(getByTestId('lists-container').childElementCount).toBe(0);
@@ -54,5 +35,15 @@ describe('<Lists />', () => {
     expect(getByText(data[5].phone)).toBeInTheDocument();
     fireEvent.click(nextDom);
     expect(queryByText(data[5].phone)).toBeNull();
+  });
+
+  test('filter search', () => {
+    const { getByText } = render(<Component drivers={data} search={data[10].name.first} />);
+    expect(getByText(new RegExp(data[10].name.first))).toBeInTheDocument();
+  });
+
+  test(`disable next button when < ${PAGE_LIMIT} data`, () => {
+    const { getByText } = render(<Component drivers={data.slice(0, 3)} />);
+    expect(getByText('Next Page >')).toHaveAttribute('disabled');
   });
 });

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { Stack, Button, Box, Text } from '@chakra-ui/react';
 
@@ -7,28 +7,37 @@ import DriverCard from './Card';
 
 interface Props {
   drivers?: User[];
+  search?: string;
 }
 
 export const PAGE_LIMIT = 5;
 export const PAGE_TOTAL = 30;
 
-const Lists = ({ drivers }: Props) => {
+const Lists = ({ drivers, search = '' }: Props) => {
   const [page, setPage] = useState<number>(1);
-  const totalPage = PAGE_TOTAL / PAGE_LIMIT;
 
   const handlePage = (curr: number) => () => {
     setPage(curr);
   };
 
+  const searchedDrivers = (drivers || []).filter(
+    (item) => item.name.first.toLowerCase().indexOf(search.toLowerCase()) > -1
+  );
+  const totalPage = Math.ceil(searchedDrivers.length / PAGE_LIMIT);
+
+  useEffect(() => {
+    setPage(1);
+  }, [search]);
+
   return (
     <Stack spacing="2em">
-      {!drivers?.length && (
+      {!searchedDrivers?.length && (
         <Text align="center" color="gray">
           Driver tidak ditemukan...
         </Text>
       )}
       <Container data-testid="lists-container">
-        {(drivers || [])
+        {(searchedDrivers || [])
           .slice(page * PAGE_LIMIT - PAGE_LIMIT, page * PAGE_LIMIT)
           .map((item, key) => (
             <DriverCard data={item} key={key} />
