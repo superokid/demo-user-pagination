@@ -1,4 +1,5 @@
 import { Box, Flex, Spacer, Text, Image, useMediaQuery } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 import MobSideBar from './MobSideBar';
 import IconUser from 'assets/icons/user.svg';
@@ -12,7 +13,9 @@ const Header: React.FC<Props> = () => {
     <Box bg="white" px={5} py={7} position="sticky" top="0" zIndex={2}>
       <Flex>
         {isMobile && <MobSideBar />}
-        <Image width="150px" objectFit="contain" src={ImgLogo} alt="shipper logo" />
+        <Link to="/">
+          <Image width="150px" objectFit="contain" src={ImgLogo} alt="shipper logo" />
+        </Link>
         <Spacer />
         <Box>
           <Flex alignItems="center">

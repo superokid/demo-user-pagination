@@ -51,7 +51,7 @@ const Lists = ({ drivers, search = '' }: Props) => {
           variant="link"
           onClick={handlePage(page + 1)}
           color="black"
-          isDisabled={page === totalPage}
+          isDisabled={searchedDrivers.length === 0 || page === totalPage}
         >
           {`Next Page >`}
         </Button>
