@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
-import { Stack, Button, Box } from '@chakra-ui/react';
+import { Stack, Button, Box, Text } from '@chakra-ui/react';
 
 import User from 'types/User';
 import DriverCard from './Card';
@@ -9,11 +9,12 @@ interface Props {
   drivers?: User[];
 }
 
+export const PAGE_LIMIT = 5;
+export const PAGE_TOTAL = 30;
+
 const Lists = ({ drivers }: Props) => {
   const [page, setPage] = useState<number>(1);
-  const LIMIT = 5;
-  const TOTAL = 30;
-  const totalPage = TOTAL / LIMIT;
+  const totalPage = PAGE_TOTAL / PAGE_LIMIT;
 
   const handlePage = (curr: number) => () => {
     setPage(curr);
@@ -21,10 +22,17 @@ const Lists = ({ drivers }: Props) => {
 
   return (
     <Stack spacing="2em">
-      <Container>
-        {(drivers || []).slice(page * LIMIT - LIMIT, page * LIMIT).map((item, key) => (
-          <DriverCard data={item} key={key} />
-        ))}
+      {!drivers?.length && (
+        <Text align="center" color="gray">
+          Driver tidak ditemukan...
+        </Text>
+      )}
+      <Container data-testid="lists-container">
+        {(drivers || [])
+          .slice(page * PAGE_LIMIT - PAGE_LIMIT, page * PAGE_LIMIT)
+          .map((item, key) => (
+            <DriverCard data={item} key={key} />
+          ))}
       </Container>
       <Stack direction="row" justify="center" spacing="1em">
         <Button variant="link" onClick={handlePage(page - 1)} color="black" isDisabled={page === 1}>

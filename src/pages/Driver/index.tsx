@@ -1,33 +1,33 @@
-import { useQuery } from 'react-query';
+import { useState } from 'react';
 import { VStack, Text, Skeleton } from '@chakra-ui/react';
 
 import DriverHeader from './Header';
 import DriverLists from './Lists';
-import { UserApi } from 'types/User';
+import { useDrivers } from 'config/api';
 
 interface Props {}
 
 const Driver = (props: Props) => {
-  const { isLoading, error, data } = useQuery<UserApi>(
-    'repoData',
-    () => fetch('https://randomuser.me/api/?results=30').then((res) => res.json()),
-    {
-      retry: false,
-      refetchOnWindowFocus: false,
-      keepPreviousData: true,
-      staleTime: 15000,
-    }
-  );
+  const [search, setSearch] = useState('');
+  const { isLoading, isError, data } = useDrivers();
 
-  if (error) {
+  if (isError) {
     return <Text>Error</Text>;
   }
 
+  const searchedData = (data || []).filter(
+    (item) => item.name.first.toLowerCase().indexOf(search.toLowerCase()) > -1
+  );
+
   return (
     <VStack w="100%">
-      <DriverHeader />
+      <DriverHeader
+        handleSearch={(val) => {
+          setSearch(val);
+        }}
+      />
       <Skeleton isLoaded={!isLoading} w="100%" height="20px">
-        <DriverLists drivers={data?.results || []} />
+        <DriverLists drivers={searchedData} />
       </Skeleton>
     </VStack>
   );
